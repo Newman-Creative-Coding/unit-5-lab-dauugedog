@@ -30,6 +30,8 @@ public class Car {
     public static int totalCars;
     private String make;
     public static String model; 
+    private char VINLetter;
+    private String VINNumber;
     private String VIN;
     private String licensePlate;
     private static double totalProfits;
@@ -37,7 +39,7 @@ public class Car {
     private static int speedsterCount;
     private static int roadsterCount;
     // Constructor:
-    public Car (String model, String VIN) {
+    public Car (String model) {
         totalCars++;
         make="Dauuge's Car Company";
         this.model=model;
@@ -53,8 +55,17 @@ public class Car {
                 roadsterCount++;
                 totalProfits+=206000.00;
             }
-        this.VIN=VIN;
+        setVIN();
         licensePlate="";
+    }
+
+    private void setVIN () {
+        if (VINNumber>99999) {
+            VINLetter++;
+            VINNumber=10000;
+        }
+        VIN=VINLetter+String.valueOf(VINNumber);
+        VINNumber++;
     }
 
     // Methods:
@@ -87,6 +98,10 @@ public class Car {
      */
     public void setPlateNumber(String plateNumber){
         licensePlate=plateNumber;
+    }
+
+    public String getPlateNumber(){
+        return licensePlate;
     }
     /**
      * Returns the total profits from cars produced by my factory.
